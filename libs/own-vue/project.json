@@ -1,0 +1,40 @@
+{
+  "name": "own-vue",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "libs/own-vue/src",
+  "targets": {
+    "dev": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "own-vue:build"
+      },
+      "dependsOn": ["^build"]
+    },
+    "build": {
+      "executor": "@nx/vite:build",
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/libs/own-vue",
+        "skipTypeCheck": true
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      },
+      "dependsOn": ["^build"]
+    },
+    "preview": {
+      "inputs": [
+        {
+          "externalDependencies": ["vite"]
+        }
+      ]
+    }
+  }
+}
